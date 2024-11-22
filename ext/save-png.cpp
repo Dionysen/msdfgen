@@ -1,8 +1,5 @@
 
-#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
-#endif
-
 #include "save-png.h"
 
 #include <cstdio>
@@ -25,8 +22,7 @@ public:
     inline PngGuard(png_structp png, png_infop info) : png(png), info(info), file(NULL) { }
     inline ~PngGuard() {
         png_destroy_write_struct(&png, &info);
-        if (file)
-            fclose(file);
+        fclose(file);
     }
     inline void setFile(FILE *file) {
         this->file = file;
